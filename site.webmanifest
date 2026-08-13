@@ -1,7 +1,8 @@
 {
   "name": "Darende Kurtarma – Oto Kurtarma ve Çekici",
   "short_name": "Darende Kurtarma",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#07111f",
   "theme_color": "#07111f",
