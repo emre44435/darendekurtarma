@@ -1678,3 +1678,198 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 18px); }
     width: auto;
   }
 }
+
+/* ===== FINAL PUBLISH PERFORMANCE + A11Y PASS ===== */
+/* Hero photos are pre-blurred/pre-darkened at build time: avoid an expensive
+   full-screen CSS blur/filter on every frame while keeping the same look. */
+.hero__photo-bg img {
+  filter: none !important;
+  transform: scale(1.02);
+}
+
+/* Slightly stronger secondary text contrast without changing visual hierarchy. */
+.brand__text small { color: rgba(255,255,255,.72); }
+.desktop-nav a { color: rgba(255,255,255,.82); }
+.roadside__steps p { color: rgba(255,255,255,.74); }
+.testimonial-card__meta small { color: rgba(255,255,255,.74); }
+.site-footer { color: rgba(255,255,255,.76); }
+.hero-media__hud small { color: rgba(255,255,255,.74); }
+.hero-media__badge small { color: rgba(255,255,255,.72); }
+
+/* Stable video composition from the first paint. */
+.hero-media__frame {
+  contain: layout paint;
+}
+.hero-media__hud--bottom {
+  justify-content: flex-start;
+}
+
+/* Improve keyboard visibility on native FAQ summaries. */
+.accordion summary:focus-visible {
+  outline: 3px solid rgba(18,101,232,.45);
+  outline-offset: -3px;
+  border-radius: 12px;
+}
+
+/* Avoid costly continuous compositing on touch/mobile hardware. Reveal/counter
+   entrance animations remain, but decorative floating/glow loops are static. */
+@media (max-width: 900px) {
+  .site-header {
+    background: rgba(7,17,31,.985);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .hero::before,
+  .impact-counters__glow--left,
+  .impact-counters__glow--center,
+  .impact-counters__glow--right,
+  .about__badge,
+  .about__mini-card,
+  .prep-card__icon,
+  .process-list__icon {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__photo-bg img {
+    filter: none !important;
+    transform: scale(1.025);
+  }
+  .hero-media {
+    width: min(88vw, 340px);
+    margin: 24px auto 0;
+    filter: none;
+  }
+  .hero-media__frame {
+    border-radius: 24px;
+    background: #061222;
+    box-shadow: 0 22px 46px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.04);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    animation: none !important;
+  }
+  .hero-media__video {
+    transform: scale(1.045);
+    object-position: 50% 58%;
+    transition: none;
+    will-change: auto;
+  }
+  .hero-media:hover .hero-media__video {
+    transform: scale(1.045);
+    filter: saturate(.92) contrast(1.06) brightness(.92);
+  }
+  .hero-media__hud,
+  .hero-media__badge {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .hero-media__hud--top {
+    top: 12px;
+    left: 12px;
+    right: auto;
+    background: rgba(5,17,34,.90);
+    animation: none !important;
+  }
+  .hero-media__badge--service {
+    top: 68px;
+    right: 12px;
+    left: auto;
+    bottom: auto;
+    min-width: 152px;
+    background: rgba(5,17,35,.92);
+    animation: none !important;
+  }
+  .hero-media__badge--location {
+    left: 12px;
+    right: 12px;
+    bottom: 82px;
+    width: auto;
+    min-width: 0;
+    background: rgba(5,17,35,.92);
+    animation: none !important;
+  }
+  .hero-media__hud--bottom {
+    left: 12px;
+    right: 12px;
+    bottom: 14px;
+    min-height: 54px;
+    padding: 10px 12px;
+    background: rgba(4,16,34,.92);
+    animation: none !important;
+  }
+  .hero-media__live-dot {
+    animation-duration: 2.4s;
+  }
+  .mobile-sticky {
+    background: rgba(7,17,31,.99);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* WCAG contrast pass on the saturated blue CTA sections. */
+.emergency-cta p,
+.contact__content p {
+  color: rgba(255,255,255,.94);
+}
+
+
+/* V12 brand logo — custom domain release */
+.brand--logo {
+  flex: 0 0 auto;
+  max-width: min(245px, 23vw);
+}
+.brand__logo {
+  display: block;
+  width: 245px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 92, 255, .16));
+}
+.brand__logo--footer { width: 270px; }
+@media (max-width: 640px) {
+  .brand--logo { max-width: 170px; }
+  .brand__logo { width: 170px; }
+}
+@media (max-width: 380px) {
+  .brand--logo { max-width: 148px; }
+  .brand__logo { width: 148px; }
+}
+
+/* V13 — reliable hero video playback + final brand/favicon release */
+.hero-media__play-fallback {
+  position: absolute;
+  z-index: 12;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 15px;
+  border: 1px solid rgba(145,184,255,.28);
+  border-radius: 14px;
+  color: #fff;
+  background: rgba(4,15,31,.88);
+  box-shadow: 0 16px 42px rgba(0,0,0,.35), 0 0 28px rgba(18,101,232,.14);
+  cursor: pointer;
+  font: inherit;
+}
+.hero-media__play-fallback[hidden] { display: none !important; }
+.hero-media__play-fallback span {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #fff;
+  background: #1265e8;
+  font-size: 11px;
+}
+.hero-media__play-fallback strong { font-size: 12px; }
+
+/* The supplied horizontal logo keeps its natural ratio without changing header height. */
+.brand__logo { aspect-ratio: 1200 / 312; }

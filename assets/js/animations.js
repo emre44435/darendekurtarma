@@ -15,7 +15,7 @@
       entry.target.classList.add('is-visible');
       obs.unobserve(entry.target);
     });
-  }, { rootMargin: '0px 0px -7% 0px', threshold: 0.08 });
+  }, { rootMargin: '180px 0px 120px 0px', threshold: 0.01 });
 
   items.forEach((item) => observer.observe(item));
 })();
@@ -30,7 +30,7 @@
   const animateCounter = (el) => {
     const target = Number(el.dataset.target || 0);
     const suffix = el.dataset.suffix || '';
-    const duration = 1350;
+    const duration = window.matchMedia('(max-width: 640px)').matches ? 850 : 1100;
     const start = performance.now();
 
     const step = (now) => {
@@ -63,7 +63,7 @@
       animateCounter(entry.target);
       obs.unobserve(entry.target);
     });
-  }, { threshold: 0.45 });
+  }, { rootMargin: '100px 0px', threshold: 0.2 });
 
   counters.forEach((counter) => observer.observe(counter));
 })();

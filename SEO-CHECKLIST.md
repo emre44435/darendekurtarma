@@ -11,7 +11,7 @@
 - [ ] Doğrulanmamış 7/24, fiyat, süre, filo, deneyim, yorum iddiası yok
 
 ## TECHNICAL SEO
-- [ ] Canonical `https://darendekurtarma.com/`
+- [ ] Canonical `https://darendeotokurtarici.com/`
 - [ ] Robots meta var
 - [ ] `robots.txt` erişiliyor
 - [ ] `sitemap.xml` erişiliyor
@@ -39,7 +39,7 @@
 - [ ] Gerçek hizmetler eklendi
 - [ ] Gerçek çalışma saatleri eklendi
 - [ ] Telefon numarası siteyle aynı
-- [ ] Web sitesi `https://darendekurtarma.com/`
+- [ ] Web sitesi `https://darendeotokurtarici.com/`
 - [ ] Gerçek hizmet alanları tanımlandı
 - [ ] Gerçek işletme fotoğrafları eklendi
 - [ ] Düzenli yeni gerçek fotoğraf planı oluşturuldu
@@ -59,23 +59,23 @@
 - [ ] Sorgular şehir bazında takip ediliyor
 
 ## PERFORMANCE
-- [ ] Hero video yaklaşık 2 MB altında optimize edildi
-- [ ] Hero poster 464×832 WebP
-- [ ] İlk ekran dışı görseller lazy-load
-- [ ] Gallery görselleri WebP ve responsive srcset
+- [x] Hero video yaklaşık 1 MB ve H.264 olarak optimize edildi
+- [x] Hero poster 464×832 WebP
+- [x] İlk ekran dışı görseller lazy-load
+- [x] Galeri görselleri 1200×900 WebP ve lazy-load
 - [ ] LCP öğesi gecikmiyor
-- [ ] CLS için görsellerde width/height var
-- [ ] Gereksiz üçüncü taraf script yok
-- [ ] Framework JS yok
+- [x] CLS için görsellerde width/height var
+- [x] Gereksiz üçüncü taraf script yok
+- [x] Framework JS yok
 - [ ] Lighthouse mobile gerçek cihaz/Chrome ile ölçüldü
 - [ ] Hedef LCP ≤ 2.5 s
 - [ ] Hedef INP ≤ 200 ms
 - [ ] Hedef CLS ≤ 0.1
 
 ## IMAGES
-- [ ] 8 gerçek fotoğraf eklendi
+- [x] 8 gerçek fotoğraf eklendi
 - [ ] 1600×1200 master dosyalar mevcut
-- [ ] 1200×900 varyantlar mevcut
+- [x] 1200×900 optimize görseller mevcut
 - [ ] 800×600 varyantlar mevcut
 - [ ] Dosya adları açıklayıcı ve spam değil
 - [ ] Alt metinler doğal

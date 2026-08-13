@@ -83,36 +83,78 @@
   const video = document.getElementById('hero-video');
   if (!video) return;
 
-  // Mobile Safari / Chrome autoplay requirements.
+  const fallback = document.querySelector('.hero-media__play-fallback');
+  let inView = true;
+
   video.muted = true;
   video.defaultMuted = true;
+  video.autoplay = true;
+  video.loop = true;
   video.playsInline = true;
   video.setAttribute('muted', '');
+  video.setAttribute('autoplay', '');
+  video.setAttribute('loop', '');
   video.setAttribute('playsinline', '');
   video.setAttribute('webkit-playsinline', '');
 
-  const tryPlay = () => {
-    if (document.hidden) return;
-    const playPromise = video.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {
-        // If the browser blocks autoplay, the poster remains visible instead of a blank frame.
-      });
+  const hideFallback = () => {
+    if (fallback) fallback.hidden = true;
+  };
+
+  const showFallback = () => {
+    if (fallback) fallback.hidden = false;
+  };
+
+  const tryPlay = async () => {
+    if (document.hidden || !inView) return;
+    try {
+      await video.play();
+      hideFallback();
+    } catch (_) {
+      showFallback();
     }
   };
 
-  if (video.readyState >= 2) {
+  video.addEventListener('playing', hideFallback, { passive: true });
+  video.addEventListener('canplay', tryPlay, { passive: true });
+  video.addEventListener('loadeddata', tryPlay, { passive: true });
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
     tryPlay();
-  } else {
-    video.addEventListener('canplay', tryPlay, { once: true });
+  });
+
+  if (fallback) {
+    fallback.addEventListener('click', async () => {
+      video.muted = true;
+      try { await video.play(); hideFallback(); } catch (_) { showFallback(); }
+    });
   }
 
-  window.addEventListener('pageshow', tryPlay);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      inView = Boolean(entry && entry.isIntersecting);
+      if (inView) tryPlay();
+      else video.pause();
+    }, { rootMargin: '160px 0px', threshold: 0.01 });
+    observer.observe(video);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryPlay, { once: true });
+  } else {
+    tryPlay();
+  }
+
+  window.addEventListener('load', tryPlay, { once: true });
+  window.addEventListener('pageshow', tryPlay, { passive: true });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      video.pause();
-    } else {
-      tryPlay();
-    }
+    if (document.hidden) video.pause();
+    else tryPlay();
   });
+
+  // A user gesture unlocks playback on browsers with stricter autoplay policies.
+  const unlock = () => tryPlay();
+  window.addEventListener('pointerdown', unlock, { once: true, passive: true });
+  window.addEventListener('touchstart', unlock, { once: true, passive: true });
 })();
