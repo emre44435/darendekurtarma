@@ -177,15 +177,24 @@
 
         <div class="hero-media reveal" aria-label="Hero video alanı">
           <div class="hero-media__frame">
+            <video
+              id="hero-video"
+              class="hero-media__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              preload="auto"
+              poster="/assets/media/hero-video-poster.webp"
+              disablepictureinpicture
+              controlslist="nodownload noplaybackrate nofullscreen"
+              aria-label="Dostlar Oto Kurtarma hizmet videosu">
+              <source src="/assets/media/hero-video.mp4" type="video/mp4">
+              Tarayıcınız video oynatmayı desteklemiyor.
+            </video>
             <div class="hero-media__route" aria-hidden="true">
               <span></span><span></span><span></span>
-            </div>
-            <div class="hero-media__placeholder">
-              <svg viewBox="0 0 80 80" aria-hidden="true"><path d="M15 54h50M22 46h36l-5-14H27l-5 14Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><circle cx="28" cy="55" r="5" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="52" cy="55" r="5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M34 26h12M40 20v12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
-              <strong>Gerçek işletme videosu</strong>
-              <span>464 × 832 px</span>
-              <small>/assets/media/hero-video.mp4 veya /assets/media/hero-video.webm · 464 × 832 px</small>
-              <!-- HERO VIDEO YOLU: /assets/media/hero-video.mp4 | ALTERNATİF: /assets/media/hero-video.webm -->
             </div>
           </div>
           <div class="hero-media__badge hero-media__badge--location">

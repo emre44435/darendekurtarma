@@ -55,7 +55,7 @@ Kaynak ölçü: **464 × 832 px**, portrait.
 - opsiyonel `assets/video/hero/hero-darende-kurtarma.webm`
 - poster: `assets/video/hero/hero-darende-kurtarma.webp`
 
-Video eklendiğinde `index.html` içindeki `.hero-media__placeholder` alanını `<video muted autoplay loop playsinline preload="metadata" poster="...">` yapısıyla değiştirin. Aspect ratio CSS'te hazırdır.
+Hero video artık doğrudan bağlıdır. Kullanılan dosya yolu `assets/media/hero-video.mp4`, poster yolu `assets/media/hero-video-poster.webp` şeklindedir. Video etiketi `autoplay muted loop playsinline preload="auto"` ile yapılandırılmıştır. Dosya adını `hero-video.mp4.mp4` yapmayın; doğru ad yalnızca `hero-video.mp4` olmalıdır.
 
 ## Galeri fotoğrafları
 

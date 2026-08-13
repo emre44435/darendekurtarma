@@ -76,3 +76,43 @@
     });
   });
 })();
+
+(() => {
+  'use strict';
+
+  const video = document.getElementById('hero-video');
+  if (!video) return;
+
+  // Mobile Safari / Chrome autoplay requirements.
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+
+  const tryPlay = () => {
+    if (document.hidden) return;
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        // If the browser blocks autoplay, the poster remains visible instead of a blank frame.
+      });
+    }
+  };
+
+  if (video.readyState >= 2) {
+    tryPlay();
+  } else {
+    video.addEventListener('canplay', tryPlay, { once: true });
+  }
+
+  window.addEventListener('pageshow', tryPlay);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      video.pause();
+    } else {
+      tryPlay();
+    }
+  });
+})();

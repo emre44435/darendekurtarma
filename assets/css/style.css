@@ -1442,3 +1442,43 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 18px); }
     line-height: 1.45;
   }
 }
+
+/* V8 - Real hero video: aligned, autoplay-ready, low-overhead */
+.hero-media__frame {
+  isolation: isolate;
+  background: #071425;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.hero-media__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 50%;
+  background: #071425;
+  border-radius: inherit;
+}
+.hero-media__frame::before {
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(4,12,24,.08) 0%, rgba(4,12,24,.03) 50%, rgba(4,12,24,.28) 100%);
+}
+.hero-media__route {
+  display: none;
+}
+.hero-media__badge {
+  z-index: 5;
+}
+@media (max-width: 640px) {
+  .hero-media__video {
+    object-position: center center;
+  }
+  .hero-media__frame {
+    box-shadow: 0 24px 48px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+  }
+}
