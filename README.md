@@ -1,39 +1,31 @@
-# Darende Kurtarma – FINAL Yayın Paketi
+# Darende Oto Kurtarıcı – V14 SEO Final
 
-Bu paket `darendeotokurtarici.com` için hazırlanan tek sayfa Dostlar Oto Kurtarma / Çekici sitesinin yayın sürümüdür.
+Bu paket `https://darendeotokurtarici.com/` için Hostinger yayınına hazırlanmıştır. **Ana sayfanın mevcut tasarımı korunmuştur.** Ana sayfaya yalnızca mevcut hizmet kartları ve footer içinde sade, taranabilir iç bağlantılar eklenmiştir.
 
-## GitHub Pages
+## Yeni SEO sayfaları
 
-ZIP içindeki dosyaları repository köküne yükleyin. `index.html` doğrudan repo ana dizininde olmalıdır.
+- `/darende-cekici/`
+- `/darende-oto-kurtarma/`
+- `/darende-yol-yardim/` — “Darende oto yardım” arama niyetini de doğal biçimde hedefler
+- `/darende-arac-kurtarma/`
+- `/darende-acil-cekici/`
+- `/sehirler-arasi-arac-tasima/`
+- `/darende-hizmet-bolgeleri/`
+- `/darende-cekici-fiyatlari/`
 
-Asset yolları `./assets/...` şeklindedir. Yayın alan adı `https://darendeotokurtarici.com/` olarak ayarlanmıştır. GitHub Pages kullanıyorsanız kökteki `CNAME` ve `.nojekyll` dosyalarını silmeyin.
+Her sayfada özgün title, meta description, H1, canonical, BreadcrumbList, Service, görünür SSS + FAQPage verisi ve ilgili sayfalara iç linkler bulunur. Aynı niyeti taşıyan kelimeler için kopya/doorway sayfalar oluşturulmamıştır.
 
-## Hero video
+## Hostinger'a yükleme
 
-- Dosya: `assets/media/hero-video.mp4`
-- Poster: `assets/media/hero-video-poster.webp`
-- Ölçü: 464×832
-- Süre: 13 saniye
-- H.264 MP4, sessiz, loop, playsinline
+ZIP içindeki dosyaları `public_html` içine çıkarın. Son yapıda `public_html/index.html`, `public_html/assets/` ve yeni hizmet klasörleri doğrudan kökte görünmelidir. `.htaccess` dosyasını silmeyin; HTTPS / www canonical yönlendirmesi, cache/compression ve 404 yönlendirmesi için kullanılır.
 
-Video kartı ve poster ilk ekranda sabit boyutla hemen çizilir. Video ana sayfa kaynakları yüklendikten sonra oynatılır ve ekran dışına çıkınca gereksiz işlem yükünü azaltmak için duraklatılır.
+## Yayın sonrası
 
-## Performans düzenlemeleri
+1. Search Console > Site Haritaları bölümünde `sitemap.xml` gönderin / yeniden gönderin.
+2. URL Denetleme ile önce ana sayfayı, sonra `/darende-cekici/`, `/darende-oto-kurtarma/`, `/darende-yol-yardim/` sayfalarını kontrol edin.
+3. İndeksleme talebini aynı URL için tekrar tekrar göndermeyin.
+4. Google İşletme Profili, gerçek müşteri yorumları ve yerel referans/backlink çalışmaları site dışı görünürlüğü desteklemelidir.
 
-- Mobil ve masaüstü hero görselleri önceden blur/dark işlenip WebP olarak küçültüldü.
-- Büyük hakkımızda PNG görseli WebP'ye çevrildi.
-- Galeri görselleri 1200×900 WebP olarak optimize edildi.
-- İlk ekran dışı görseller lazy-load kullanır.
-- Hero görseli viewport'a göre preload edilir.
-- Mobilde pahalı sürekli blur/glow animasyonları azaltıldı; giriş animasyonları korunur.
-- Hero içerikleri JS `reveal` beklemeden hemen görünür.
-- Video kartındaki `DO` metinleri kaldırıldı.
+## Domain
 
-## SEO
-
-- Title: `Darende Oto Kurtarma & Çekici | Yol Yardım`
-- H1: `Darende Oto Kurtarma, Çekici ve Yol Yardım`
-- Canonical: `https://darendeotokurtarici.com/`
-- `robots.txt`, `sitemap.xml`, Open Graph ve LocalBusiness JSON-LD hazırdır.
-
-Gerçek Lighthouse/PageSpeed puanı yayın anındaki sunucu, ağ ve test koşullarına göre değişebilir. Kod tarafında performans, erişilebilirlik, best practices ve SEO için yayın öncesi kontroller uygulanmıştır.
+Tüm canonical, schema, sitemap ve robots kayıtları yalnızca `https://darendeotokurtarici.com/` alan adını kullanır.
