@@ -73,3 +73,5 @@
   .seo-hero__actions,.seo-cta__actions { display:grid; width:100%; }
   .seo-hero__actions .btn,.seo-cta__actions .btn { width:100%; }
 }
+
+.seo-source-note{margin:22px 0 0;color:#64748b;font-size:13px;line-height:1.7}
