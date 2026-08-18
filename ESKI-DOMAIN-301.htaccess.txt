@@ -1,0 +1,16 @@
+# Bu dosyayı yalnızca darendeotocekici.com alan adı size aitse kullanın.
+# Önce eski sitedeki alakasız footer bağlantılarını ve güvenlik sorunlarını temizleyin.
+# Ardından bu kuralları eski alan adının .htaccess dosyasına taşıyın.
+
+RewriteEngine On
+
+# Eski ana sayfa ve tüm eski URL'ler tek kanonik siteye taşınır.
+RewriteCond %{HTTP_HOST} ^(?:www\.)?darendeotocekici\.com$ [NC]
+RewriteRule ^darende-oto-kurtarma/?$ https://darendeotokurtarici.com/darende-oto-kurtarma/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(?:www\.)?darendeotocekici\.com$ [NC]
+RewriteRule ^darende-yol-yardim/?$ https://darendeotokurtarici.com/darende-yol-yardim/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(?:www\.)?darendeotocekici\.com$ [NC]
+RewriteRule ^ https://darendeotokurtarici.com/ [R=301,L]
+

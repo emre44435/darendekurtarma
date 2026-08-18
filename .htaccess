@@ -1,17 +1,29 @@
 # Darende Çekici & Oto Kurtarma - production rules
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
+AddDefaultCharset UTF-8
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+# Tek bir ana alan adı ve temiz klasör URL'leri kullan.
+RewriteCond %{THE_REQUEST} \s/+index\.html(?:[?\s]) [NC]
+RewriteRule ^index\.html$ https://darendeotokurtarici.com/ [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+(.+)/index\.html(?:[?\s]) [NC]
+RewriteRule ^(.+)/index\.html$ https://darendeotokurtarici.com/$1/ [R=301,L,NE]
+
+# Ana sorgunun eş anlamlı URL'leri ana sayfada birleşsin; kopya sayfa oluşmasın.
 RewriteRule ^darende-cekici/?$ https://darendeotokurtarici.com/ [R=301,L]
+RewriteRule ^darende-oto-kurtarici/?$ https://darendeotokurtarici.com/ [R=301,L]
+RewriteRule ^darende-oto-cekici/?$ https://darendeotokurtarici.com/ [R=301,L]
+
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.darendeotokurtarici\.com$ [NC]
 RewriteRule ^ https://darendeotokurtarici.com%{REQUEST_URI} [R=301,L]
 </IfModule>
 
 <IfModule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
+AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml text/xml image/svg+xml
 </IfModule>
 
 <IfModule mod_expires.c>
@@ -33,4 +45,11 @@ Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
 </FilesMatch>
 Header always set X-Content-Type-Options "nosniff"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
+
+# Eski mahalle adlari guncel resmi sayfalara yonlendirilsin.
+Redirect 301 /darende-mahalleleri/palanga-cekici/ https://darendeotokurtarici.com/darende-mahalleleri/basdirek-cekici/
+Redirect 301 /darende-mahalleleri/ulupinar-cekici/ https://darendeotokurtarici.com/darende-mahalleleri/asagiulupinar-cekici/
+Redirect 301 /darende-mahalleleri/mollausagi-cekici/ https://darendeotokurtarici.com/darende-mahalleleri/mullausagi-cekici/
